@@ -6,7 +6,7 @@ import {useState} from "react"
 
 
 const TodoItem = props => {
-  const [complete, setComplete] = useState(false)
+  const [notComplete, setComplete] = useState(true)
 
   let checkIcon = {
     color: "rgb(0, 189, 3)",
@@ -22,14 +22,19 @@ const TodoItem = props => {
 
   
   let todoItem = [classes.TodoItem];
-
-  if (complete) {
+  
+  if (props.complete) {
     todoItem.push(classes.completeTodo)
+  } 
+
+  function onCompleteHandler() {
+    setComplete(prev => !prev);
+    props.onComplete(props.todoIndex, notComplete)
   }
 
   return (
     <div className={todoItem.join(" ")}>
-      <IconButton style={checkIcon} onClick={() => setComplete(prev => !prev)}>
+      <IconButton style={checkIcon} onClick={onCompleteHandler}>
         <CheckIcon style={{fontSize: "27px"}}/>
       </IconButton>
 

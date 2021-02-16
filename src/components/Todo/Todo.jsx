@@ -28,8 +28,22 @@ const Todo = () => {
   function onAdd(todo) {
     setTodos(prev => [
       ...prev,
-      {todo}
+      {
+        todo,
+        complete: false
+      }
     ])
+      console.log(todos)
+  }
+
+  function onComplete(index, status) {
+    let newTodos = todos.slice(0)
+    if (status) {
+      newTodos[index].complete = status;
+    } else {
+      newTodos[index].complete = false;
+    }
+    setTodos(newTodos);
   }
 
   function onDelete(index) {
@@ -46,7 +60,9 @@ const Todo = () => {
             <TodoItem 
               key={index} 
               todoIndex={index}
+              complete={todo.complete}
               todo={todo.todo}
+              onComplete={onComplete}
               onDelete={onDelete}
             />
           )
