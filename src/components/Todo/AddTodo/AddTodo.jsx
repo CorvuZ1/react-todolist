@@ -1,7 +1,6 @@
 import {useState} from "react"
 import {Button, Snackbar} from "@material-ui/core"
 import classes from "./AddTodo.module.css"
-import MuiAlert from '@material-ui/lab/Alert';
 
 const AddTodo = props => {
   const [value, setValue] = useState("");

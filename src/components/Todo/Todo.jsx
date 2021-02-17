@@ -11,7 +11,7 @@ const Todo = () => {
    },[])
 
   useEffect(() => {
-    localDataSave()
+    localDataSave();
   },[todos])
  
   function localDataCheck() {
@@ -54,9 +54,11 @@ const Todo = () => {
 
   return (
     <div className={classes.Todo}>
+      <h3 className={classes.taskCounter}>Незавершенных дел: {todos.reduce((a, b) => a + !b.complete, 0)}</h3>
       <AddTodo onAdd={onAdd}/>
         {
           todos.map((todo, index) => 
+            
             <TodoItem 
               key={index} 
               todoIndex={index}
